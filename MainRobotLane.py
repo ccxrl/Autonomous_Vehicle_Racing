@@ -1,9 +1,3 @@
-# final code, nice steering and detection 4:36 pm, 11/5
-
-# with april tag and ir
-
-# commented out all gui, but functionality is the same as main robot lane 5
-
 import cv2
 from MotorModule_FINAL import Motor
 from LaneModule import getLaneCurve
@@ -21,7 +15,7 @@ lane_cam = cv2.VideoCapture(0)  # Lane detection camera
 tag_cam = cv2.VideoCapture(1)   # AprilTag detection camera
 
 # Initialize the trackbars window with initial values
-initialTrackBarVals = [0, 0, 0, 240]  # Use the same initial values as in LaneModule
+initialTrackBarVals = [0, 0, 0, 240]
 #utils.initializeTrackbars(initialTrackBarVals)  # Commenting out UI initialization
 
 # Initialize tag detection
@@ -50,7 +44,7 @@ def getImg(display=False, size=[480, 240]):
 
 def handleLaneFollowing(img):
     # Calculate the curve value for lane detection
-    curveVal = getLaneCurve(img, display=0)  # Changed to display=1 to match LaneModule
+    curveVal = getLaneCurve(img, display=0)
 
     # Motor movement based on lane curve
     sen = 0.65  # SENSITIVITY
@@ -68,7 +62,7 @@ def handleLaneFollowing(img):
         if curveVal > -deadzone: curveVal = 0
 
     # Use negative speed to move forward with the inverted motor
-    motor.move(-maxVal, curveVal * sen, 0.05)  # Changed to negative speed for forward motion
+    motor.move(-maxVal, curveVal * sen, 0.05)
 
     # Print steering information
     steering_intensity = abs(curveVal)
@@ -119,7 +113,7 @@ def main():
 
                 elif tag_id == 1:  # Pedestrian zone
                     if tag_handler.handle_pedestrian_zone(img_tag):
-                        should_follow_lanes = True  # Continue following lanes but at reduced speed
+                        should_follow_lanes = True
 
                 elif tag_id == 2:  # Traffic light
                     if tag_handler.handle_traffic_light(img_tag, tag.corners):
