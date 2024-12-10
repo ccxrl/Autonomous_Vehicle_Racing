@@ -74,7 +74,7 @@ class Motor():
         speed: turning speed (0-100)
         time: duration of 90-degree turn in seconds
         """
-        self.turn_speed = min(max(speed, 0), 100)  # Ensure speed is between 0-100
+        self.turn_speed = min(max(speed, 0), 100)
         self.turn_time = time
 
     def turn_right_90(self):
@@ -85,8 +85,8 @@ class Motor():
         self.stop()
 
         # Left wheel forward, right wheel backward - INVERTED LOGIC
-        GPIO.output(self.DIR_A, False)   # Left forward (inverted)
-        GPIO.output(self.DIR_B, True)    # Right backward (inverted)
+        GPIO.output(self.DIR_A, False)
+        GPIO.output(self.DIR_B, True)
 
         # Set both wheels to turn_speed
         self.pwmA.ChangeDutyCycle(self.turn_speed)
@@ -107,8 +107,8 @@ class Motor():
         self.stop()
 
         # Left wheel backward, right wheel forward - INVERTED LOGIC
-        GPIO.output(self.DIR_A, True)    # Left backward (inverted)
-        GPIO.output(self.DIR_B, False)   # Right forward (inverted)
+        GPIO.output(self.DIR_A, True)
+        GPIO.output(self.DIR_B, False)
 
         # Set both wheels to turn_speed
         self.pwmA.ChangeDutyCycle(self.turn_speed)
@@ -119,7 +119,7 @@ class Motor():
 
         # Stop and pause
         self.stop()
-        sleep(0.5)  # Short pause after turn
+        sleep(0.5)
 
 def main():
     """Test function for the motor driver"""
@@ -127,17 +127,17 @@ def main():
 
     # Example usage of different functions
     print("Testing basic movements...")
-    motor.move(0.5, 0, 2)    # Now moves backward
+    motor.move(0.5, 0, 2) 
     motor.stop(1)
-    motor.move(-0.5, 0, 2)   # Now moves forward
+    motor.move(-0.5, 0, 2)
     motor.stop(1)
 
     print("Testing 90-degree turns with default settings...")
-    motor.turn_right_90()    # Turn right 90 degrees
-    motor.turn_left_90()     # Turn left 90 degrees
+    motor.turn_right_90()
+    motor.turn_left_90()    
 
     print("Testing 90-degree turns with custom settings...")
-    motor.set_turn_settings(speed=70, time=0.6)  # Faster turns
+    motor.set_turn_settings(speed=70, time=0.6)
     motor.turn_right_90()
     motor.turn_left_90()
 
