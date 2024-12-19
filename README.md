@@ -44,4 +44,4 @@ AprilTag Detection:
 The second camera scans for AprilTags along the route.
 Upon detecting a tag, the system decodes its ID and executes the corresponding action.
 
-![image](images/logo.png)
+![image](1G2kKa1SuL.png)
