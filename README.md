@@ -53,3 +53,9 @@ To replicate or build upon this project:
 2. Install the necessary Python libraries:
    ```bash
    pip install opencv-python apriltag
+
+
+![image](images/robot_view.png)
+![image](images/robot.png)
+![image](images/3d_model_01.png)
+![image](images/3d_model_02.png)
